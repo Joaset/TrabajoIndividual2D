@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         Salto();
     }
 
+
     bool EstaEnSuelo()
     {
         RaycastHit2D raycasthit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, capaSuelo);
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
 
+        //transform.Translate(inputMovimiento * velocidad * Time.deltaTime,0,0);
         rigidBody.velocity = new Vector2(inputMovimiento * velocidad, rigidBody.velocity.y);
         CambioDireccion(inputMovimiento);
     }
