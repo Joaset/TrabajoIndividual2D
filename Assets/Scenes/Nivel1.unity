@@ -527,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.207649, y: 22.390518, z: -10}
+  m_LocalPosition: {x: -9.827649, y: 22.390518, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -743,6 +743,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1783756267}
     m_Modifications:
+    - target: {fileID: 2498643097365352211, guid: f7f4a3658210f7640822e97a60da66bb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 2498643097365352211, guid: f7f4a3658210f7640822e97a60da66bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.03
@@ -12182,7 +12186,7 @@ Transform:
   m_GameObject: {fileID: 1783260314}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.207649, y: 22.390518, z: -10}
+  m_LocalPosition: {x: -9.827649, y: 22.390518, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12748,6 +12752,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3528914348126727024, guid: a36b418d2618c084e99f56fbd3c00041, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3528914348126727024, guid: a36b418d2618c084e99f56fbd3c00041, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3528914348126727024, guid: a36b418d2618c084e99f56fbd3c00041, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3528914348126727024, guid: a36b418d2618c084e99f56fbd3c00041, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3815121810553028966, guid: a36b418d2618c084e99f56fbd3c00041, type: 3}
       propertyPath: offSet
       value: 45
@@ -12766,7 +12786,7 @@ PrefabInstance:
       objectReference: {fileID: 773143131}
     - target: {fileID: 5665379368549747373, guid: a36b418d2618c084e99f56fbd3c00041, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.96
+      value: -11.58
       objectReference: {fileID: 0}
     - target: {fileID: 5665379368549747373, guid: a36b418d2618c084e99f56fbd3c00041, type: 3}
       propertyPath: m_LocalPosition.y
