@@ -64,12 +64,36 @@ public class Player : MonoBehaviour
             }
 
             Invoke("ActivarDaño", cooldownDaño);
+        }
+
+        if (collision.CompareTag("lava"))
+        {
+            if (!puedeRecibirDaño)
+            {
+                return;
+            }
+
+            puedeRecibirDaño = false;
+            Color color = spriteRenderer.color;
+            color.a = 0.5f;
+            spriteRenderer.color = color;
+            Destroy(myCanvas.transform.GetChild((int)vidaJugador+1).gameObject);
+            vidaJugador -= collision.GetComponent<LavaDamage>().dañoCausado;
+            gameObject.GetComponent<PlayerController>().AplicarGolpe();
+
+            if (vidaJugador <= 0)
+            {
+                Debug.Log("Perdiste");
+                Destroy(gameObject);
+                Destroy(Corazon);
+            }
+
+            Invoke("ActivarDaño", cooldownDaño);
         }  
     }
 
     void ActivarDaño()
     {
-        Debug.Log("activar invoke");
         puedeRecibirDaño = true;
         Color c = spriteRenderer.color;
         c.a = 1f;
