@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private float tocarSueloRadio;
     [SerializeField] private Transform FirePoint;
     [SerializeField] private GameObject Bullet;
+    private float fuerzaGolpe;
+    private bool puedeMoverse;
 
     void Start()
     {
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour
         velocidad = 5f;
         fuerzaSalto = 12f;
         tocarSueloRadio = 0.2f;
+        fuerzaGolpe = 500f;
+        puedeMoverse = true;
     }
 
     
@@ -60,6 +64,10 @@ public class PlayerController : MonoBehaviour
 
     void Movimiento()
     {
+        if (!puedeMoverse)
+        {
+            return;
+        }
         velX = Input.GetAxis("Horizontal");
         velY = rigidBody.velocity.y;
         rigidBody.velocity = new Vector2(velX * velocidad, velY);
@@ -109,6 +117,38 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isShooting", false);
         }
+    }
+
+    public void AplicarGolpe()
+    {
+        puedeMoverse = false;
+
+        Vector2 direccionGolpe;
+
+        if (rigidBody.velocity.x > 0)
+        {
+            direccionGolpe = new Vector2(-1, 1);
+        }
+        else
+        {
+            direccionGolpe = new Vector2(1,1);
+        }
+
+        rigidBody.AddForce(direccionGolpe * fuerzaGolpe);
+
+        StartCoroutine(EsperaMovimiento());
+    }
+
+    IEnumerator EsperaMovimiento()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        while (!tocarSuelo)
+        {
+            yield return null;
+        }
+
+        puedeMoverse = true;
     }
 
 }
