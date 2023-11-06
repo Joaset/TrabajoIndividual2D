@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7287723893501794827}
   - component: {fileID: 8168083822445833682}
   - component: {fileID: 1644678516858489072}
+  - component: {fileID: 3815121810553028966}
+  - component: {fileID: 8602736738790440940}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -201,6 +203,55 @@ MonoBehaviour:
   suelo: {fileID: 5733476613286906434}
   FirePoint: {fileID: 8941351888741937025}
   Bullet: {fileID: 6362274594023263167, guid: 564055a9302234f4caa2c2d25e54df01, type: 3}
+--- !u!114 &3815121810553028966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146850533283105097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5414e782fd57240a67d939ff43b732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaJugador: 0
+  vidaMaxima: 0
+--- !u!70 &8602736738790440940
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146850533283105097}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.32, y: 0.38}
+  m_Direction: 0
 --- !u!1 &2788358638346291965
 GameObject:
   m_ObjectHideFlags: 0
