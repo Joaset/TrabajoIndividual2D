@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Enemies : MonoBehaviour
 {
-    [SerializeField] private string enemyName;
     private float healthPoints;
-    [SerializeField] private float enemySpeed;
     [SerializeField] private GameObject explosionEnemigo;
+    public float dañoCausado;
+
 
     void Start()
     {
-        enemyName = "Skull";
         healthPoints = 2f;
+        dañoCausado = 1f;
     }
 
    
@@ -24,9 +24,10 @@ public class Enemies : MonoBehaviour
     public void TomarDaño(float daño)
     {
         healthPoints -= daño;
+
         if (healthPoints<= 0)
         {
-            Destroy(gameObject);
+            Muerte();
         }
     }
 
