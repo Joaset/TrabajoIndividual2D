@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public Image Corazon;
     public RectTransform posicionPrimerCorazon;
     public Canvas myCanvas;
-    public int offSet;
+    private int offSet;
     private bool puedeRecibirDaño;
     private float cooldownDaño;
     private SpriteRenderer spriteRenderer;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
         vidaJugador = vidaMaxima;
         puedeRecibirDaño = true;
         cooldownDaño = 3f;
+        offSet = 75;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         Transform PosCorazon = posicionPrimerCorazon;
