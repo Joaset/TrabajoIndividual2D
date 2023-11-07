@@ -172,7 +172,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0052103847, y: -0.029318184}
+  m_Offset: {x: 0.0052103847, y: -0.044981964}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -183,7 +183,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22412947, y: 0.332345}
+  m_Size: {x: 0.22412947, y: 0.30101746}
   m_EdgeRadius: 0
 --- !u!114 &1644678516858489072
 MonoBehaviour:
@@ -217,6 +217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaJugador: 0
   vidaMaxima: 0
+  Corazon: {fileID: 0}
+  posicionPrimerCorazon: {fileID: 0}
+  myCanvas: {fileID: 0}
 --- !u!70 &8602736738790440940
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -246,11 +249,11 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.32, y: 0.38}
+  m_Offset: {x: 0.004176458, y: -0.02505843}
+  m_Size: {x: 0.23925655, y: 0.3354524}
   m_Direction: 0
 --- !u!1 &2788358638346291965
 GameObject:

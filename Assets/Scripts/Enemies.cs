@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Enemies : MonoBehaviour
 {
-    private float healthPoints;
+    [SerializeField] private float healthPoints;
     [SerializeField] private GameObject explosionEnemigo;
-    public float dañoCausado;
+    [SerializeField] public float dañoCausado;
 
 
     void Start()
     {
-        healthPoints = 2f;
         dañoCausado = 1f;
     }
 

@@ -8,8 +8,6 @@ public class EnemyMovementPlat : MonoBehaviour
     [SerializeField] private Transform sueloEnemigo;
     [SerializeField] private Transform detetctarPared;
     [SerializeField] private Transform detectarSuelo;
-    //[SerializeField] private float distancia;
-    //[SerializeField] private bool moviendoDerecha;
     private Rigidbody2D rigidEnemigo;
     [SerializeField] private bool enemigoQuieto;
     private Animator anim;
