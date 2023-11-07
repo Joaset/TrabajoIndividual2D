@@ -14,9 +14,12 @@ public class Player : MonoBehaviour
     private bool puedeRecibirDaño;
     private float cooldownDaño;
     private SpriteRenderer spriteRenderer;
+
+    public GameObject gameOver;
     
     void Start()
     {
+        gameOver.SetActive(false);
         vidaMaxima = 3f;
         vidaJugador = vidaMaxima;
         puedeRecibirDaño = true;
@@ -59,9 +62,9 @@ public class Player : MonoBehaviour
 
             if (vidaJugador <= 0)
             {
-                Debug.Log("Perdiste");
                 Destroy(gameObject);
                 Destroy(Corazon);
+                gameOver.SetActive(true);
             }
 
             Invoke("ActivarDaño", cooldownDaño);
@@ -84,9 +87,9 @@ public class Player : MonoBehaviour
 
             if (vidaJugador <= 0)
             {
-                Debug.Log("Perdiste");
                 Destroy(gameObject);
                 Destroy(Corazon);
+                gameOver.SetActive(true);
             }
 
             Invoke("ActivarDaño", cooldownDaño);
