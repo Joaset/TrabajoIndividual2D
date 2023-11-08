@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButton("Jump") && tocarSuelo)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x,fuerzaSalto);
+            AudioManager.instance.PlayAudio(AudioManager.instance.jump);
         }
     }
 
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isShooting", true);
             Instantiate(Bullet, FirePoint.position, FirePoint.rotation);
+            AudioManager.instance.PlayAudio(AudioManager.instance.shoot);
         }
         else
         {
