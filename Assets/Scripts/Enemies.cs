@@ -33,6 +33,7 @@ public class Enemies : MonoBehaviour
     private void Muerte()
     {
         Instantiate(explosionEnemigo, transform.position, Quaternion.identity);
+        AudioManager.instance.PlayAudio(AudioManager.instance.enemydead);
         Destroy(gameObject);
     }
 }

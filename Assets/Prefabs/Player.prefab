@@ -220,6 +220,7 @@ MonoBehaviour:
   Corazon: {fileID: 0}
   posicionPrimerCorazon: {fileID: 0}
   myCanvas: {fileID: 0}
+  gameOver: {fileID: 0}
 --- !u!70 &8602736738790440940
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

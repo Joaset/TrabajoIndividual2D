@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
             {
                 Destroy(gameObject);
                 Destroy(Corazon);
+                AudioManager.instance.PlayAudio(AudioManager.instance.dead);
                 gameOver.SetActive(true);
             }
 
@@ -89,6 +90,7 @@ public class Player : MonoBehaviour
             {
                 Destroy(gameObject);
                 Destroy(Corazon);
+                AudioManager.instance.PlayAudio(AudioManager.instance.dead);
                 gameOver.SetActive(true);
             }
 
