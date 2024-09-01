@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform FirePoint;
     [SerializeField] private GameObject Bullet;
     private float fuerzaGolpe;
-    private bool puedeMoverse;
+    private bool puedeDisparar;
+    [SerializeField] private float tiempoEntreAtaques;
+    [SerializeField] private float tiempoSiguienteAtaque;
 
     void Start()
     {
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
         fuerzaSalto = 12f;
         tocarSueloRadio = 0.2f;
         fuerzaGolpe = 500f;
-        puedeMoverse = true;
+        puedeDisparar = true;
     }
 
     
@@ -59,16 +61,12 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButton("Jump") && tocarSuelo)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x,fuerzaSalto);
-            AudioManager.instance.PlayAudio(AudioManager.instance.jump);
+            AudioManager.Instance.PlayAudio(AudioManager.Instance.jump);
         }
     }
 
     void Movimiento()
     {
-        if (!puedeMoverse)
-        {
-            return;
-        }
         velX = Input.GetAxis("Horizontal");
         velY = rigidBody.velocity.y;
         rigidBody.velocity = new Vector2(velX * velocidad, velY);
@@ -89,8 +87,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
-
-        //transform.Translate(velX * velocidad * Time.deltaTime,0,0);
     }
 
     void CambioDireccion()
@@ -109,11 +105,16 @@ public class PlayerController : MonoBehaviour
 
     void Ataque()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (tiempoSiguienteAtaque > 0)
+        {
+            tiempoSiguienteAtaque -= Time.deltaTime;
+        }
+        if (Input.GetButtonDown("Fire1") && tiempoSiguienteAtaque <= 0 && puedeDisparar == true)
         {
             animator.SetBool("isShooting", true);
             Instantiate(Bullet, FirePoint.position, FirePoint.rotation);
-            AudioManager.instance.PlayAudio(AudioManager.instance.shoot);
+            AudioManager.Instance.PlayAudio(AudioManager.Instance.shoot);
+            tiempoSiguienteAtaque = tiempoEntreAtaques;
         }
         else
         {
@@ -123,8 +124,6 @@ public class PlayerController : MonoBehaviour
 
     public void AplicarGolpe()
     {
-        puedeMoverse = false;
-
         Vector2 direccionGolpe;
 
         if (rigidBody.velocity.x > 0)
@@ -137,20 +136,10 @@ public class PlayerController : MonoBehaviour
         }
 
         rigidBody.AddForce(direccionGolpe * fuerzaGolpe);
-
-        StartCoroutine(EsperaMovimiento());
     }
 
-    IEnumerator EsperaMovimiento()
+    public void SetPuedeDisparar(bool disparar)
     {
-        yield return new WaitForSeconds(0.1f);
-
-        while (!tocarSuelo)
-        {
-            yield return null;
-        }
-
-        puedeMoverse = true;
+        puedeDisparar = disparar;
     }
-
 }

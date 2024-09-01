@@ -8,12 +8,15 @@ public class MainMenu : MonoBehaviour
     
     public void Jugar()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+        AudioManager.Instance.StopAudio(AudioManager.Instance.menuMusic);
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.backgroundMusic);
+        AudioManager.Instance.SetMusicControl(false);
     }
 
     public void Salir()
     {
-        Debug.Log("Salir");
         Application.Quit();
     }
 }

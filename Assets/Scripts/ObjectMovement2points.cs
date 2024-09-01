@@ -4,87 +4,28 @@ using UnityEngine;
 
 public class ObjectMovement2points : MonoBehaviour
 {
-    [SerializeField] private Transform pointA, pointB;
-    [SerializeField] private float speedObject;
-    private bool debeMover;
-    private bool debeEsperar;
-    private bool mueveA;
-    private bool mueveB;
-    private float tiempoEspera;
-    private bool seMueve;
+    [SerializeField] Transform[] puntos;
+    [SerializeField] float velocidad;
 
     void Start()
     {
-        mueveA = true;
-        mueveB = true;
-        debeMover = true;
-        speedObject = 2f;
-        seMueve = true;
-        tiempoEspera = 2f;
-        debeEsperar = true;
+        StartCoroutine("MuevePlataforma");
     }
 
-
-    void Update()
+    IEnumerator MuevePlataforma()
     {
-        if (debeMover)
+        int i = 1;
+        Vector2 nuevaPosicion = new Vector2(puntos[i].position.x, puntos[i].position.y);
+        while (true)
         {
-            MoveObject();
-        }
-    }
-
-    private void MoveObject()
-    {
-        float disttanciaA = Vector2.Distance(transform.position, pointA.position);
-        float disttanciaB = Vector2.Distance(transform.position, pointB.position);
-
-        if (disttanciaA > 0.1f && mueveA)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, pointA.position, speedObject * Time.deltaTime);
-            if (disttanciaA < 0.3f && seMueve)
+            while (Vector2.Distance(transform.position, nuevaPosicion) > 0.001f)
             {
-                if (debeEsperar)
-                {
-                    StartCoroutine(Espera());
-                    mueveA = false;
-                    mueveB = true;
-                }
-
-                else
-                {
-                    mueveA = false;
-                    mueveB = true;
-                }
+                transform.position = Vector2.MoveTowards(transform.position, nuevaPosicion, velocidad * Time.deltaTime);
+                yield return null;
             }
+            yield return new WaitForSeconds(1);
+            if (i < 1) i++; else i = 0;
+            nuevaPosicion = new Vector2(puntos[i].position.x, puntos[i].position.y);
         }
-
-        if (disttanciaB > 0.1f && mueveB)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, pointB.position, speedObject * Time.deltaTime);
-            if (disttanciaB < 0.3f && seMueve)
-            {
-                if (debeEsperar)
-                {
-                    StartCoroutine(Espera());
-                    mueveA = true;
-                    mueveB = false;
-                }
-
-                else
-                {
-                    mueveA = true;
-                    mueveB = false;
-                }
-            }
-        }
-    }
-
-    IEnumerator Espera()
-    {
-        debeMover = false;
-        seMueve = false;
-        yield return new WaitForSeconds(tiempoEspera);
-        debeMover = true; 
-        seMueve = true;
     }
 }

@@ -8,45 +8,65 @@ public class AudioManager : MonoBehaviour
 {
 
     public AudioMixer musicMixer, effectsMixer;
-    public AudioSource backgroundMusic, shoot, enemydead, dead, jump;
-    public static AudioManager instance;
+    public AudioSource menuMusic, backgroundMusic, shoot, enemydead, dead, jump, winMusic, life;
+    public static AudioManager Instance;
+    [Range(-80, 10)]
     public float masterVol, effectsVol;
-    // public Slider masterSlider, effectslider;
+    public Slider masterSlider, effectslider;
+    [SerializeField] private bool musicControl = true;
 
     private void Awake()
     {
-        if (instance == null)
+        if (AudioManager.Instance == null)
         {
-            instance = this;
+            AudioManager.Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
     void Start()
     {
-        // masterSlider.value = masterVol;
-        // effectslider.value = effectsVol;
-        // masterSlider.minValue = -80;
-        // masterSlider.maxValue = -10;
-        // effectslider.minValue = -80;
-        // effectslider.maxValue = -10;
+        masterSlider.value = masterVol;
+        effectslider.value = effectsVol;
+        masterSlider.minValue = -80;
+        masterSlider.maxValue = 10;
+        effectslider.minValue = -80;
+        effectslider.maxValue = 10;
     }
 
     void Update()
     {
-        MasterVolume();
-        EffectsVolume();
+        if (musicControl == true) 
+        {
+            MasterVolume();
+            EffectsVolume();
+        }
     }
 
     public void MasterVolume()
     {
-        musicMixer.SetFloat("masterVolumen", masterVol);
+        musicMixer.SetFloat("masterVolume", masterSlider.value);
     }
 
     public void EffectsVolume()
     {
-        effectsMixer.SetFloat("effectsVolumen", effectsVol);
+        effectsMixer.SetFloat("effectsVolume", effectslider.value);
     }
     public void PlayAudio(AudioSource audio)
     {
         audio.Play();
+    }
+
+    public void StopAudio(AudioSource audio)
+    {
+        audio.Stop();
+    }
+
+    public void SetMusicControl(bool control)
+    {
+        musicControl = control;
     }
 }

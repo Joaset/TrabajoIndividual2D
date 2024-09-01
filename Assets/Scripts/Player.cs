@@ -5,42 +5,25 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float vidaJugador;
-    [SerializeField]private float vidaMaxima;
-    public Image Corazon;
-    public RectTransform posicionPrimerCorazon;
-    public Canvas myCanvas;
-    private int offSet;
     private bool puedeRecibirDaño;
     private float cooldownDaño;
     private SpriteRenderer spriteRenderer;
-
     public GameObject gameOver;
-    
+    public Image barraVida;
+    [SerializeField] private GameObject contadorVida;
+
     void Start()
     {
-        gameOver.SetActive(false);
-        vidaMaxima = 3f;
-        vidaJugador = vidaMaxima;
         puedeRecibirDaño = true;
         cooldownDaño = 3f;
-        offSet = 75;
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        Transform PosCorazon = posicionPrimerCorazon;
-
-        for (int i = 0; i < vidaMaxima; i++)
-        {
-            Image newCorazon = Instantiate(Corazon,PosCorazon.position, Quaternion.identity);
-            newCorazon.transform.SetParent(myCanvas.transform);
-            PosCorazon.position = new Vector2(PosCorazon.position.x + offSet, PosCorazon.position.y);
-        }
     }
 
     
     void Update()
     {
-        
+        barraVida.fillAmount = GameManager.Instance.vida / 100;
+        contadorVida.GetComponent<LifeCount>().TotalVida(GameManager.Instance.vida);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,16 +39,16 @@ public class Player : MonoBehaviour
             Color color = spriteRenderer.color;
             color.a = 0.5f;
             spriteRenderer.color = color;
-            Destroy(myCanvas.transform.GetChild((int)vidaJugador+1).gameObject);
-            vidaJugador -= collision.GetComponent<Enemies>().dañoCausado;
+            GameManager.Instance.restarVida(collision.GetComponent<Enemies>().dañoCausado);
             gameObject.GetComponent<PlayerController>().AplicarGolpe();
 
-            if (vidaJugador <= 0)
+            if (GameManager.Instance.vida <= 0)
             {
-                Destroy(gameObject);
-                Destroy(Corazon);
-                AudioManager.instance.PlayAudio(AudioManager.instance.dead);
+                AudioManager.Instance.PlayAudio(AudioManager.Instance.dead);
                 gameOver.SetActive(true);
+                Time.timeScale = 0;
+                GetComponent<PlayerController>().SetPuedeDisparar(false);
+                AudioManager.Instance.StopAudio(AudioManager.Instance.backgroundMusic);
             }
 
             Invoke("ActivarDaño", cooldownDaño);
@@ -82,20 +65,29 @@ public class Player : MonoBehaviour
             Color color = spriteRenderer.color;
             color.a = 0.5f;
             spriteRenderer.color = color;
-            Destroy(myCanvas.transform.GetChild((int)vidaJugador+1).gameObject);
-            vidaJugador -= collision.GetComponent<LavaDamage>().dañoCausado;
+            GameManager.Instance.restarVida(collision.GetComponent<LavaDamage>().dañoCausado);
             gameObject.GetComponent<PlayerController>().AplicarGolpe();
 
-            if (vidaJugador <= 0)
+            if (GameManager.Instance.vida <= 0)
             {
-                Destroy(gameObject);
-                Destroy(Corazon);
-                AudioManager.instance.PlayAudio(AudioManager.instance.dead);
+                AudioManager.Instance.PlayAudio(AudioManager.Instance.dead);
                 gameOver.SetActive(true);
+                Time.timeScale = 0;
+                GetComponent<PlayerController>().SetPuedeDisparar(false);
+                AudioManager.Instance.StopAudio(AudioManager.Instance.backgroundMusic);
             }
 
             Invoke("ActivarDaño", cooldownDaño);
-        }  
+        }
+        if (collision.CompareTag("vida"))
+        {
+            if (GameManager.Instance.vida < 100)
+            {
+                GameManager.Instance.sumarVida(collision.GetComponent<MoreLife>().aumentoVida);
+                collision.GetComponent<MoreLife>().Muerte();
+                AudioManager.Instance.PlayAudio(AudioManager.Instance.life);
+            }
+        }
     }
 
     void ActivarDaño()
