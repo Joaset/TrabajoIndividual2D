@@ -11,7 +11,7 @@ public class Enemies : MonoBehaviour
 
     void Start()
     {
-        dañoCausado = 1f;
+        dañoCausado = 10f;
     }
 
    
@@ -33,7 +33,7 @@ public class Enemies : MonoBehaviour
     private void Muerte()
     {
         Instantiate(explosionEnemigo, transform.position, Quaternion.identity);
-        AudioManager.instance.PlayAudio(AudioManager.instance.enemydead);
+        AudioManager.Instance.PlayAudio(AudioManager.Instance.enemydead);
         Destroy(gameObject);
     }
 }

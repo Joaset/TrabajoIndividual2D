@@ -7,7 +7,7 @@ public class LavaDamage : MonoBehaviour
     public float dañoCausado;
     void Start()
     {
-        dañoCausado = 1f;
+        dañoCausado = 10f;
     }
 
 }
