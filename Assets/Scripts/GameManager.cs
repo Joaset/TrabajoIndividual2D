@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public float vida;
+    public float vidaMaxima
+        ;
 
     private void Awake()
     {
@@ -22,16 +23,16 @@ public class GameManager : MonoBehaviour
 
     public void restarVida(float vidaRestar)
     {
-        vida -= vidaRestar;
+        vidaMaxima -= vidaRestar;
     }
 
     public void sumarVida(float vidaSumar)
     {
-        vida += vidaSumar;
+        vidaMaxima += vidaSumar;
     }
 
     public void resetVida()
     {
-        vida = 100f;
+        vidaMaxima = 100f;
     }
 }

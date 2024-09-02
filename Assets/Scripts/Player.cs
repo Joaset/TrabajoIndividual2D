@@ -22,8 +22,8 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        barraVida.fillAmount = GameManager.Instance.vida / 100;
-        contadorVida.GetComponent<LifeCount>().TotalVida(GameManager.Instance.vida);
+        barraVida.fillAmount = GameManager.Instance.vidaMaxima / 100;
+        contadorVida.GetComponent<LifeCount>().TotalVida(GameManager.Instance.vidaMaxima);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             GameManager.Instance.restarVida(collision.GetComponent<Enemies>().dañoCausado);
             gameObject.GetComponent<PlayerController>().AplicarGolpe();
 
-            if (GameManager.Instance.vida <= 0)
+            if (GameManager.Instance.vidaMaxima <= 0)
             {
                 AudioManager.Instance.PlayAudio(AudioManager.Instance.dead);
                 gameOver.SetActive(true);
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
             GameManager.Instance.restarVida(collision.GetComponent<LavaDamage>().dañoCausado);
             gameObject.GetComponent<PlayerController>().AplicarGolpe();
 
-            if (GameManager.Instance.vida <= 0)
+            if (GameManager.Instance.vidaMaxima <= 0)
             {
                 AudioManager.Instance.PlayAudio(AudioManager.Instance.dead);
                 gameOver.SetActive(true);
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         }
         if (collision.CompareTag("vida"))
         {
-            if (GameManager.Instance.vida < 100)
+            if (GameManager.Instance.vidaMaxima < 100)
             {
                 GameManager.Instance.sumarVida(collision.GetComponent<MoreLife>().aumentoVida);
                 collision.GetComponent<MoreLife>().Muerte();
