@@ -9,10 +9,10 @@ public class ObjectMovement2points : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("MuevePlataforma");
+        StartCoroutine("MoverPlataforma");
     }
 
-    IEnumerator MuevePlataforma()
+    IEnumerator MoverPlataforma()
     {
         int i = 1;
         Vector2 nuevaPosicion = new Vector2(puntos[i].position.x, puntos[i].position.y);

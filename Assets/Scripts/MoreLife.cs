@@ -12,7 +12,7 @@ public class MoreLife : MonoBehaviour
     }
 
 
-    public void Muerte()
+    public void Morir()
     {
         Destroy(gameObject);
     }

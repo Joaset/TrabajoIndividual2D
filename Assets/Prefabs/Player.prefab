@@ -201,8 +201,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   suelo: {fileID: 5733476613286906434}
-  FirePoint: {fileID: 8941351888741937025}
-  Bullet: {fileID: 6362274594023263167, guid: 564055a9302234f4caa2c2d25e54df01, type: 3}
+  firePoint: {fileID: 8941351888741937025}
+  bullet: {fileID: 6362274594023263167, guid: 564055a9302234f4caa2c2d25e54df01, type: 3}
+  tiempoEntreAtaques: 0
+  tiempoSiguienteAtaque: 0
 --- !u!114 &3815121810553028966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,12 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5414e782fd57240a67d939ff43b732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaJugador: 0
-  vidaMaxima: 0
-  Corazon: {fileID: 0}
-  posicionPrimerCorazon: {fileID: 0}
-  myCanvas: {fileID: 0}
   gameOver: {fileID: 0}
+  barraVida: {fileID: 0}
+  contadorVida: {fileID: 0}
 --- !u!70 &8602736738790440940
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

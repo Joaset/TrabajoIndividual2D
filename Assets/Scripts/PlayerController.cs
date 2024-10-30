@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform suelo;
     private bool tocarSuelo;
     private float tocarSueloRadio;
-    [SerializeField] private Transform FirePoint;
-    [SerializeField] private GameObject Bullet;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject bullet;
     private float fuerzaGolpe;
     private bool puedeDisparar;
     [SerializeField] private float tiempoEntreAtaques;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         tocarSuelo = Physics2D.OverlapCircle(suelo.position,tocarSueloRadio,capaSuelo);
-        CambioDireccion();
+        CambiarDireccion();
 
         if (tocarSuelo)
         {
@@ -47,16 +47,16 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isJumping", true);
         }
 
-        Ataque();
+        Atacar();
 
     }
 
     private void FixedUpdate() {
-        Movimiento();
-        Salto();
+        Mover();
+        Saltar();
     }
 
-    void Salto()
+    void Saltar()
     {
         if(Input.GetButton("Jump") && tocarSuelo)
         {
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Movimiento()
+    void Mover()
     {
         velX = Input.GetAxis("Horizontal");
         velY = rigidBody.velocity.y;
@@ -89,21 +89,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CambioDireccion()
+    void CambiarDireccion()
     {
         if(rigidBody.velocity.x > 1)
         {
             transform.localScale = new Vector2( 3, 3);
-            FirePoint.transform.eulerAngles = new Vector3(0,0,0);
+            firePoint.transform.eulerAngles = new Vector3(0,0,0);
         }
         else if(rigidBody.velocity.x < -1)
         {
             transform.localScale = new Vector2( -3, 3);
-            FirePoint.transform.eulerAngles = new Vector3(0,180,0);
+            firePoint.transform.eulerAngles = new Vector3(0,180,0);
         }
     }
 
-    void Ataque()
+    void Atacar()
     {
         if (tiempoSiguienteAtaque > 0)
         {
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && tiempoSiguienteAtaque <= 0 && puedeDisparar == true)
         {
             animator.SetBool("isShooting", true);
-            Instantiate(Bullet, FirePoint.position, FirePoint.rotation);
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
             AudioManager.Instance.PlayAudio(AudioManager.Instance.shoot);
             tiempoSiguienteAtaque = tiempoEntreAtaques;
         }

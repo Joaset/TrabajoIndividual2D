@@ -18,7 +18,7 @@ public class LifeCount : MonoBehaviour
         textMesh.text = vida.ToString() + "/100";
     }
 
-    public void TotalVida(float vidaActual)
+    public void ContarVida(float vidaActual)
     {
         vida = vidaActual;
     }
