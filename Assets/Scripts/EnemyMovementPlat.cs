@@ -6,7 +6,7 @@ public class EnemyMovementPlat : MonoBehaviour
 {
     [SerializeField] private float velocidad;
     [SerializeField] private Transform sueloEnemigo;
-    [SerializeField] private Transform detetctarPared;
+    [SerializeField] private Transform detectarPared;
     [SerializeField] private Transform detectarSuelo;
     private Rigidbody2D rigidEnemigo;
     [SerializeField] private bool enemigoQuieto;
@@ -29,12 +29,12 @@ public class EnemyMovementPlat : MonoBehaviour
     void Update() 
     {
         sueloDetectado = !Physics2D.OverlapCircle(sueloEnemigo.position,radioDeteccion, tipoSuelo);    
-        paredDetectada = Physics2D.OverlapCircle(detetctarPared.position,radioDeteccion, tipoSuelo);
+        paredDetectada = Physics2D.OverlapCircle(detectarPared.position,radioDeteccion, tipoSuelo);
         estaSuelo = Physics2D.OverlapCircle(detectarSuelo.position,radioDeteccion, tipoSuelo);
         
         if (sueloDetectado || paredDetectada && estaSuelo)
         {
-            Gira();
+            Girar();
         }
     }
 
@@ -63,7 +63,7 @@ public class EnemyMovementPlat : MonoBehaviour
         }
     }
 
-    private void Gira()
+    private void Girar()
     {
         caminaDerecha = !caminaDerecha;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);

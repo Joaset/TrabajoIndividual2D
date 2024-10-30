@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Win : MonoBehaviour
 {
-    public void MenuPrincipal()
+    public void IniciarMenuPrincipal()
     {
         SceneManager.LoadScene(0);
-        GameManager.Instance.resetVida();
+        GameManager.Instance.ResetVida();
         AudioManager.Instance.PlayAudio(AudioManager.Instance.menuMusic);
     }
 }

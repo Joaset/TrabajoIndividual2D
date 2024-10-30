@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         barraVida.fillAmount = GameManager.Instance.vidaMaxima / 100;
-        contadorVida.GetComponent<LifeCount>().TotalVida(GameManager.Instance.vidaMaxima);
+        contadorVida.GetComponent<LifeCount>().ContarVida(GameManager.Instance.vidaMaxima);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
             if (GameManager.Instance.vidaMaxima < 100)
             {
                 GameManager.Instance.sumarVida(collision.GetComponent<MoreLife>().aumentoVida);
-                collision.GetComponent<MoreLife>().Muerte();
+                collision.GetComponent<MoreLife>().Morir();
                 AudioManager.Instance.PlayAudio(AudioManager.Instance.life);
             }
         }

@@ -26,11 +26,11 @@ public class Enemies : MonoBehaviour
 
         if (healthPoints<= 0)
         {
-            Muerte();
+            Morir();
         }
     }
 
-    private void Muerte()
+    private void Morir()
     {
         Instantiate(explosionEnemigo, transform.position, Quaternion.identity);
         AudioManager.Instance.PlayAudio(AudioManager.Instance.enemydead);

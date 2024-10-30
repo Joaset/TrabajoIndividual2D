@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 0
   sueloEnemigo: {fileID: 8763300922533097083}
-  detetctarPared: {fileID: 1821718765424678311}
+  detectarPared: {fileID: 1821718765424678311}
   detectarSuelo: {fileID: 4975370479233745980}
   enemigoQuieto: 0
   enemigoCaminando: 1

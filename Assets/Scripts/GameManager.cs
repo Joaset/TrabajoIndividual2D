@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         vidaMaxima += vidaSumar;
     }
 
-    public void resetVida()
+    public void ResetVida()
     {
         vidaMaxima = 100f;
     }
